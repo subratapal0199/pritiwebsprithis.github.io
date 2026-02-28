@@ -139,30 +139,76 @@ function generateCalendar() {
 // Scroll detection to go back to first page
 let lastScrollTop = 0;
 let scrollTimeout = null;
+let formInteracting = false;
+let formCooldown = null;
+
+// Track ALL form element interactions to prevent scroll-back
+function setupFormProtection() {
+    // Listen on all form elements: input, select, textarea, button inside RSVP
+    document.addEventListener('focusin', function(e) {
+        const tag = e.target.tagName;
+        if (tag === 'SELECT' || tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'BUTTON') {
+            formInteracting = true;
+            if (formCooldown) clearTimeout(formCooldown);
+        }
+    });
+
+    document.addEventListener('focusout', function(e) {
+        const tag = e.target.tagName;
+        if (tag === 'SELECT' || tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'BUTTON') {
+            // Keep protection for 1 second after losing focus
+            if (formCooldown) clearTimeout(formCooldown);
+            formCooldown = setTimeout(() => {
+                formInteracting = false;
+            }, 1000);
+        }
+    });
+
+    // Also catch touch/click on form elements
+    document.addEventListener('touchstart', function(e) {
+        const tag = e.target.tagName;
+        if (tag === 'SELECT' || tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'BUTTON' || tag === 'OPTION' || tag === 'LABEL') {
+            formInteracting = true;
+            if (formCooldown) clearTimeout(formCooldown);
+            formCooldown = setTimeout(() => {
+                formInteracting = false;
+            }, 2000);
+        }
+    }, { passive: true });
+}
 
 function handleScroll() {
     const invitationPage = document.getElementById('invitation-page');
     if (!invitationPage || !invitationPage.classList.contains('active')) {
         return;
     }
-    
+
+    // NEVER go back if user is interacting with form elements
+    if (formInteracting) {
+        return;
+    }
+
     const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
+
     // Clear existing timeout
     if (scrollTimeout) {
         clearTimeout(scrollTimeout);
     }
-    
-    // If scrolling up and at the top of the page
-    if (currentScrollTop < lastScrollTop && currentScrollTop < 50) {
+
+    // If scrolling up and at the very top of the page
+    if (currentScrollTop < lastScrollTop && currentScrollTop === 0) {
         scrollTimeout = setTimeout(() => {
-            // Only go back if still at top after a short delay
-            if (window.pageYOffset < 50) {
-                goBack();
+            // Triple-check: at top, not interacting with form, no focused form element
+            if (window.pageYOffset === 0 && !formInteracting) {
+                const active = document.activeElement;
+                const tag = active ? active.tagName : '';
+                if (tag !== 'SELECT' && tag !== 'INPUT' && tag !== 'TEXTAREA') {
+                    goBack();
+                }
             }
-        }, 300);
+        }, 500);
     }
-    
+
     lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
 }
 
@@ -176,6 +222,9 @@ document.addEventListener('DOMContentLoaded', function() {
         generateMapQRCode();
         loadBlessings();
     }
+    
+    // Setup form protection to prevent scroll-back during form interactions
+    setupFormProtection();
     
     // Add scroll listener for going back to first page
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -296,9 +345,19 @@ function loadBlessings() {
 
 function displayBlessings() {
     const wishesWall = document.getElementById('wishes-wall');
+    const clearBtn = document.getElementById('clear-blessings-btn');
     if (!wishesWall) return;
     
     const blessings = JSON.parse(localStorage.getItem('weddingBlessings') || '[]');
+    
+    // Show/hide clear button based on whether there are blessings
+    if (clearBtn) {
+        if (blessings.length > 0) {
+            clearBtn.style.display = 'flex';
+        } else {
+            clearBtn.style.display = 'none';
+        }
+    }
     
     if (blessings.length === 0) {
         wishesWall.innerHTML = '<div class="wish-empty">আশীর্বাদ এখানে দেখা যাবে<br><span style="font-size:11px">Blessings will appear here</span></div>';
@@ -317,8 +376,72 @@ function displayBlessings() {
     });
 }
 
+function clearBlessings() {
+    if (confirm('Are you sure you want to clear all blessings? / আপনি কি নিশ্চিত যে আপনি সব আশীর্বাদ মুছে ফেলতে চান?')) {
+        localStorage.removeItem('weddingBlessings');
+        displayBlessings();
+    }
+}
+
 function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+}
+
+// Copy UPI ID to clipboard
+function copyUPI() {
+    const upiId = '7003167407-2@ibl';
+    const upiBox = document.querySelector('.upi-id-box');
+    const copyIcon = document.getElementById('copy-icon');
+    
+    // Try to copy to clipboard
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(upiId).then(() => {
+            // Show success feedback
+            if (upiBox) {
+                upiBox.classList.add('copied');
+                if (copyIcon) {
+                    copyIcon.textContent = '✓';
+                    copyIcon.style.color = '#28a745';
+                }
+                
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    upiBox.classList.remove('copied');
+                    if (copyIcon) {
+                        copyIcon.textContent = '📋';
+                        copyIcon.style.color = '';
+                    }
+                }, 2000);
+            }
+            
+            // Show alert message
+            alert('UPI ID copied! / UPI ID কপি করা হয়েছে!\n\n' + upiId);
+        }).catch(err => {
+            console.error('Failed to copy:', err);
+            fallbackCopy(upiId);
+        });
+    } else {
+        // Fallback for older browsers
+        fallbackCopy(upiId);
+    }
+}
+
+function fallbackCopy(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.opacity = '0';
+    document.body.appendChild(textArea);
+    textArea.select();
+    
+    try {
+        document.execCommand('copy');
+        alert('UPI ID copied! / UPI ID কপি করা হয়েছে!\n\n' + text);
+    } catch (err) {
+        alert('Please copy manually: / অনুগ্রহ করে ম্যানুয়ালি কপি করুন:\n\n' + text);
+    }
+    
+    document.body.removeChild(textArea);
 }

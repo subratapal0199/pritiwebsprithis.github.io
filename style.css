@@ -12,7 +12,9 @@ body {
     padding: 0;
     position: relative;
     overflow-x: hidden;
+    overflow-y: auto;
     -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
 }
 
 body::before {
@@ -72,31 +74,36 @@ body::before {
 }
 
 .corner-decoration.top-left {
-    top: 20px;
-    left: 20px;
+    top: 15px;
+    left: 24px;
     border-right: none;
     border-bottom: none;
+    border-radius: 20px 0 0 0;
 }
 
 .corner-decoration.top-right {
-    top: 20px;
-    right: 20px;
+    top: 15px;
+    right: 24px;
     border-left: none;
     border-bottom: none;
+    border-radius: 0 20px 0 0;
 }
 
 .corner-decoration.bottom-left {
-    bottom: 55px;
-    left: 20px;
+    bottom: 15px;
+    left: 24px;
     border-right: none;
     border-top: none;
+    border-radius: 0 0 0 20px;
 }
 
 .corner-decoration.bottom-right {
-    bottom: 56px;
-    right: 20px;
+    bottom: 15px;
+    right: 24px;
     border-left: none;
     border-top: none;
+    border-radius: 0 0 20px 0;
+
 }
 
 /* Main Box */
@@ -105,8 +112,8 @@ body::before {
     width: 90%;
     max-width: 420px;
     background: linear-gradient(180deg, #FFFFFF 0%, #FFFEF8 100%);
-    padding: 40px 30px;
-    margin-bottom: 35px;
+    padding: 25px 30px;
+    /* margin-bottom: 35px; */
     box-shadow: 0 10px 40px rgba(218, 165, 32, 0.15), 0 0 0 1px rgba(218, 165, 32, 0.1);
     border: 3px solid #DAA520;
     border-radius: 20px;
@@ -121,7 +128,7 @@ body::before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 21px;
 }
 
 .ganesh-logo-container {
@@ -160,6 +167,7 @@ body::before {
     font-weight: 700;
     margin: 0;
     letter-spacing: 1px;
+    text-align: center;
 }
 
 .invited-text-english {
@@ -177,8 +185,8 @@ body::before {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0 15px 0;
-    padding: 10px;
+    /* margin: 20px 0 15px 0;
+    padding: 10px; */
 }
 
 .logo-box {
@@ -222,7 +230,7 @@ body::before {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 15px 0 20px 0;
+    /* margin: 15px 0 20px 0; */
     gap: 12px;
     width: 100%;
 }
@@ -261,6 +269,15 @@ body::before {
     line-height: 1.2;
 }
 
+/* Calligraphy name images */
+.name-calligraphy {
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: -31px;
+}
+
 .english-name {
     display: block;
     font-size: 18px;
@@ -274,7 +291,7 @@ body::before {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px 0 15px 0;
+    /* margin: 10px 0 15px 0; */
 }
 
 .union-heart {
@@ -299,7 +316,7 @@ body::before {
 .landing-bottom-section {
     text-align: center;
     margin-top: 15px;
-    padding-top: 10px;
+    /* padding-top: 10px; */
     width: 100%;
 }
 
@@ -338,7 +355,7 @@ body::before {
     cursor: pointer;
     box-shadow: 0 6px 25px rgba(218, 165, 32, 0.5);
     transition: all 0.3s ease;
-    margin-top: 25px;
+    /* margin-top: 25px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -378,7 +395,7 @@ body::before {
 /* Footer */
 .footer-text {
     margin-top: 20px;
-    padding: 15px 30px;
+    padding: 10px 30px;
     background: rgba(255, 250, 240, 0.95);
     border: 2px solid #DAA520;
     border-radius: 15px;
@@ -424,8 +441,8 @@ body::before {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
+    gap: 2px;
+    /* flex-wrap: wrap; */
 }
 
 .countdown-item {
@@ -564,6 +581,8 @@ body::before {
     padding: 25px 20px;
     border: 2px solid #F5DEB3;
     margin: 0 auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 /* Header Styles */
@@ -574,7 +593,7 @@ body::before {
 }
 
 .ganesha-icon-container {
-    margin-bottom: 8px;
+    margin-bottom: -11px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -616,10 +635,10 @@ body::before {
 }
 
 /* Couple Images Section */
-.couple-images-section {
-    margin: 25px 0;
-    padding: 20px 0;
-}
+/* .couple-images-section {
+     margin: 25px 0;
+    padding: 20px 0; 
+} */
 
 .couple-images-container {
     display: flex;
@@ -697,7 +716,7 @@ body::before {
         #FFD700 60%, 
         #FFA500 80%, 
         #FFD700 100%);
-    margin: 15px 0;
+    margin: 9px 0;
     border-radius: 5px;
     opacity: 0.8;
     position: relative;
@@ -840,12 +859,233 @@ body::before {
     line-height: 1.6;
 }
 
+/* Our Moments Section */
+.moments-section {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 25px 15px;
+    background: linear-gradient(180deg, #FFFDF5 0%, #FFF8E7 100%);
+    border-radius: 20px;
+    border: 2px solid #DAA520;
+    box-shadow: 0 6px 20px rgba(218, 165, 32, 0.15);
+}
+
+.moments-subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: #8B4513;
+    margin-bottom: 25px;
+    font-weight: 500;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.moments-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    position: relative;
+}
+
+/* Vertical line connecting cards */
+.moments-timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, transparent, #DAA520 10%, #DAA520 90%, transparent);
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+.moment-card {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(139, 69, 19, 0.08), 0 1px 4px rgba(218, 165, 32, 0.15);
+    border: 1.5px solid rgba(218, 165, 32, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: momentFadeIn 0.8s ease-out both;
+}
+
+.moment-card:nth-child(1) { animation-delay: 0.1s; }
+.moment-card:nth-child(2) { animation-delay: 0.25s; }
+.moment-card:nth-child(3) { animation-delay: 0.4s; }
+.moment-card:nth-child(4) { animation-delay: 0.55s; }
+
+.moment-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(139, 69, 19, 0.12), 0 2px 8px rgba(218, 165, 32, 0.2);
+}
+
+@keyframes momentFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.moment-image-wrapper {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+
+.moment-image-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(transparent, rgba(255, 255, 255, 0.6));
+    pointer-events: none;
+}
+
+.moment-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.moment-card:hover .moment-image {
+    transform: scale(1.03);
+}
+
+.moment-info {
+    padding: 16px 18px 18px;
+    text-align: center;
+}
+
+.moment-date {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #DAA520;
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+}
+
+.moment-caption {
+    font-size: 12px;
+    color: #654321;
+    line-height: 1.7;
+    font-weight: 400;
+}
+
+.moment-caption .english-text {
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+/* Small decorative dot between cards */
+.moment-card::before {
+    content: '';
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background: #DAA520;
+    border-radius: 50%;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 1px 4px rgba(218, 165, 32, 0.4);
+    z-index: 2;
+}
+
+.moment-card:first-child::before {
+    display: none;
+}
+
 /* QR Code Section */
 .qr-section {
     margin-top: 25px;
     text-align: center;
+    padding: 0 5px;
 }
 
+.map-qr-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Map Image Container */
+.map-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(139, 69, 19, 0.15);
+    border: 2px solid #DAA520;
+    transition: all 0.3s ease;
+    background: #FFFFFF;
+}
+
+.map-image-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(139, 69, 19, 0.2);
+}
+
+.map-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.map-image-container:hover .map-image {
+    transform: scale(1.02);
+}
+
+.map-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.map-image-container:hover .map-overlay {
+    opacity: 1;
+}
+
+.map-icon {
+    font-size: 24px;
+}
+
+.map-click-text {
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    margin: 0;
+}
+
+/* QR Code Container */
 .qr-container {
     display: inline-block;
     padding: 15px;
@@ -853,6 +1093,8 @@ body::before {
     border-radius: 12px;
     border: 2px solid rgba(218, 165, 32, 0.4);
     transition: all 0.3s ease;
+    width: 100%;
+    max-width: 200px;
 }
 
 .qr-container:hover {
@@ -897,6 +1139,15 @@ body::before {
     line-height: 1.5;
 }
 
+.location-text {
+    color: #8B4513;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 10px;
+    line-height: 1.6;
+    font-style: italic;
+}
+
 /* QR Code Canvas */
 #map-qr-code canvas {
     width: 100% !important;
@@ -907,6 +1158,26 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Responsive adjustments for map section */
+@media (min-width: 600px) {
+    .map-qr-wrapper {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 25px;
+    }
+    
+    .map-image-container {
+        flex: 1;
+        max-width: 60%;
+    }
+    
+    .qr-container {
+        flex: 0 0 auto;
+        max-width: 200px;
+    }
 }
 
 /* RSVP Section */
@@ -942,6 +1213,42 @@ body::before {
     height: 2px;
     background: linear-gradient(90deg, #DAA520, transparent);
     margin-left: 10px;
+}
+
+.clear-blessings-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    background: rgba(255, 99, 71, 0.1);
+    border: 1.5px solid rgba(255, 99, 71, 0.4);
+    border-radius: 8px;
+    color: #CD5C5C;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+.clear-blessings-btn:hover {
+    background: rgba(255, 99, 71, 0.2);
+    border-color: rgba(255, 99, 71, 0.6);
+    transform: scale(1.05);
+}
+
+.clear-blessings-btn:active {
+    transform: scale(0.98);
+}
+
+.clear-icon {
+    font-size: 14px;
+}
+
+.clear-text {
+    font-size: 11px;
+    letter-spacing: 0.3px;
 }
 
 .rsvpinner {
@@ -989,6 +1296,29 @@ body::before {
     background: #FFFFFF;
     color: #654321;
     transition: border-color 0.3s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Mobile-specific select styling */
+@media (max-width: 767px) {
+    .fl select {
+        /* Ensure select doesn't extend beyond viewport */
+        max-width: calc(100vw - 60px);
+        width: 100%;
+    }
+    
+    .rsvpinner {
+        max-width: 100%;
+    }
+    
+    .sec {
+        max-width: 100%;
+    }
 }
 
 .fl input[type="text"]:focus,
@@ -1065,6 +1395,177 @@ body::before {
     margin-top: 5px;
 }
 
+/* Contribution Section */
+.contribution-section {
+    background: linear-gradient(180deg, rgba(255, 250, 240, 0.8) 0%, rgba(255, 248, 235, 0.9) 100%);
+}
+
+.contribution-content {
+    padding: 15px 0;
+}
+
+.contribution-subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: #8B4513;
+    margin-bottom: 20px;
+    font-weight: 500;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.payment-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* PhonePe QR Code Container */
+.payment-qr-container {
+    text-align: center;
+}
+
+.payment-qr-box {
+    width: 200px;
+    height: 200px;
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.15);
+    border: 2px solid #DAA520;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    transition: all 0.3s ease;
+}
+
+.payment-qr-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(139, 69, 19, 0.2);
+}
+
+.payment-qr-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.payment-qr-text {
+    color: #8B4513;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+/* UPI ID Container */
+.upi-container {
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+}
+
+.upi-label {
+    color: #8B4513;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+.upi-id-box {
+    background: #FFFFFF;
+    border: 2px solid #DAA520;
+    border-radius: 10px;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(218, 165, 32, 0.2);
+    margin-bottom: 8px;
+}
+
+.upi-id-box:hover {
+    background: rgba(255, 250, 240, 0.9);
+    border-color: #B8860B;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(218, 165, 32, 0.3);
+}
+
+.upi-id-box:active {
+    transform: translateY(0);
+}
+
+.upi-id-text {
+    flex: 1;
+    color: #654321;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.5px;
+    word-break: break-all;
+    text-align: left;
+}
+
+.copy-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.upi-id-box:hover .copy-icon {
+    transform: scale(1.1);
+}
+
+.upi-id-box.copied .copy-icon::after {
+    content: '✓';
+    color: #28a745;
+}
+
+.upi-hint {
+    color: #8B4513;
+    font-size: 11px;
+    opacity: 0.7;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+.contribution-note {
+    text-align: center;
+    font-size: 12px;
+    color: #654321;
+    font-style: italic;
+    line-height: 1.7;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed rgba(218, 165, 32, 0.3);
+}
+
+/* Responsive adjustments for contribution section */
+@media (min-width: 600px) {
+    .payment-wrapper {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 30px;
+    }
+    
+    .payment-qr-container {
+        flex: 0 0 auto;
+    }
+    
+    .upi-container {
+        flex: 0 0 auto;
+        max-width: 280px;
+    }
+}
+
 /* Footer */
 .footer {
     text-align: center;
@@ -1110,26 +1611,88 @@ body::before {
     line-height: 1.6;
 }
 
-/* Mobile-only design - hide on desktop */
+/* Digital Invitation Footer */
+.digital-footer {
+    text-align: center;
+    padding: 20px 15px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    background: rgba(255, 250, 240, 0.6);
+    border-radius: 12px;
+    border-top: 1px solid rgba(218, 165, 32, 0.3);
+}
+
+.digital-footer-text {
+    font-size: 11px;
+    color: #8B4513;
+    margin: 0 0 6px 0;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    opacity: 0.85;
+}
+
+.copyright-text {
+    font-size: 10px;
+    color: #654321;
+    margin: 0;
+    font-weight: 400;
+    opacity: 0.7;
+    letter-spacing: 0.3px;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 12px 0;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: rgba(218, 165, 32, 0.1);
+    border: 1.5px solid rgba(218, 165, 32, 0.3);
+    border-radius: 50%;
+    color: #8B4513;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.social-icon:hover {
+    background: rgba(218, 165, 32, 0.2);
+    border-color: #DAA520;
+    color: #DAA520;
+    transform: translateY(-2px) scale(1.1);
+    box-shadow: 0 4px 8px rgba(218, 165, 32, 0.3);
+}
+
+.social-icon:active {
+    transform: translateY(0) scale(1.05);
+}
+
+.social-icon svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover svg {
+    transform: scale(1.1);
+}
+
+/* Responsive design - works on both mobile and desktop */
 @media (min-width: 768px) {
     body {
         background: #F5F5DC;
     }
     
-    body::after {
-        content: 'This website is optimized for mobile devices only. Please view on a mobile device.';
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: rgba(0, 0, 0, 0.8);
-        color: #FFFFFF;
-        padding: 20px;
-        border-radius: 10px;
-        z-index: 10000;
-        text-align: center;
-        font-size: 16px;
-    }
+    /* Removed mobile-only popup - website now works on desktop too */
 }
 
 /* Animation */

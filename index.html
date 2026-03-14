@@ -124,7 +124,8 @@
                         <div class="name-groom">
                             <h2 class="name-large">পৃথ্বীশ<br><span class="english-name">Prithis</span></h2>
                             <p class="parent-info">পুত্র / Son</p>
-                            <p class="parent-names">নান্টু ও পলি মন্ডল<br><span class="english-text">Nantu & Poli Mondal</span></p>
+                            <!-- <p class="parent-names">নান্টু ও পলি মন্ডল<br><span class="english-text">Nantu & Poli Mondal</span></p> -->
+                            <p class="parent-names">পলি মন্ডল<br><span class="english-text">Poli Mondal</span></p>
                         </div>
                     </div>
 
@@ -147,10 +148,42 @@
                         <p class="host-text">আমন্ত্রণে / Invited by:</p>
                         <p class="host-names">সুকান্ত ও শেফালী অধিকারী<br><span class="english-text">Sukanto & Shefali Adhikari</span></p>
                     </div>
+
+                    <div class="reception-section-header">
+                        <p class="reception-title">বধূবরণ ও প্রীতিভোজ / Reception</p>
+                    </div>
+                    <div class="wedding-details reception-details">
+                        <div class="detail-item">
+                            <span class="detail-label">বধূবরণের তারিখ / Reception Date:</span>
+                            <span class="detail-value">১৫ মে, ২০২৬<br><span class="english-text">May 15, 2026</span></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">সময় / Time:</span>
+                            <span class="detail-value">সন্ধ্যা<br><span class="english-text">Evening</span></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">স্থান / Venue:</span>
+                            <span class="detail-value">নজরুল স্মৃতি পাঠাগার, সান্তোশপুর গৌঠ কলোনি,<br>মহেশতলা, কলকাতা - ৭০০১৪২<br><span class="english-text">Nazrul Smriti Pathagar, Santoshpur Gout Colony,<br>Maheshtala, Kolkata - 700142</span></span>
+                        </div>
+                    </div>
+
+                    <div class="host-info reception-host-info">
+                        <p class="host-text">আমন্ত্রণে / Invited by:</p>
+                        <p class="host-names">পলি মন্ডল<br><span class="english-text">Poli Mondal</span></p>
+                    </div>
                 </div>
+
+            <!-- Pan Pata Section -->
+            <div class="pan-pata-section">
+                <p class="pan-pata-text">পানের পাতার আড়ালে লাজুক চোখে, নতুন জীবনে পা রাখলাম তোমার সাথে, নতুন সুখে।</p>
+                <p class="pan-pata-text-eng">Behind the betel leaves, with shy eyes, I stepped into a new life with you, in new happiness.</p>
+                <img src="Assets/pan_pata.png" alt="Pan Pata" class="pan-pata-img">
+            </div>
 
                 <div class="decorative-bottom"></div>
             </section>
+
+            
 
             <!-- Countdown Section -->
             <section class="countdown-section">
@@ -249,33 +282,40 @@
                 </div>
             </section>
 
-            <!-- Map QR Code Section -->
+            <!-- Map Section - Wedding & Reception Venues -->
             <section class="qr-section">
                 <div class="map-qr-wrapper">
-                    <!-- Map Image -->
-                    <div class="map-image-container" onclick="openMapLocation()" style="cursor: pointer;">
-                        <img src="Assets/mapped_view.jpeg" alt="Wedding Venue Location" class="map-image">
-                        <div class="map-overlay">
-                            <span class="map-icon">📍</span>
-                            <p class="map-click-text">Click to open in Maps</p>
+                    <!-- Wedding Venue (Priti) -->
+                    <div class="map-block">
+                        <div class="map-image-container" onclick="openMapLocation('wedding')" style="cursor: pointer;">
+                            <img src="Assets/Priti_map_view.jpeg" alt="Wedding Venue - Rampur Quarter" class="map-image" onerror="this.src='Assets/mapped_view.jpeg'">
+                            <div class="map-overlay">
+                                <span class="map-icon">📍</span>
+                                <p class="map-click-text">Click to open in Maps</p>
+                            </div>
                         </div>
+                        <p class="location-text">বিবাহ · Wedding<br><span class="english-text">Indian Saloon, Rampur Quarter, Santoshpur, Maheshtala - 700141</span></p>
+                        <p class="location-hint">ঠিকানার জন্য এখানে ক্লিক করুন<br><span class="english-text">Click here for Location</span></p>
                     </div>
                     
-                    <!-- QR Code -->
-                    <div class="qr-container" onclick="openMapLocation()" style="cursor: pointer;">
-                        <div class="qr-placeholder" id="map-qr-code">
-                            <div class="qr-icon">📍</div>
-                            <p class="qr-text">QR Code</p>
+                    <!-- Reception Venue (Prithis) -->
+                    <div class="map-block">
+                        <div class="map-image-container" onclick="openMapLocation('reception')" style="cursor: pointer;">
+                            <img src="Assets/Prithis_map_view.jpeg" alt="Reception Venue - Najrul Pathagar" class="map-image" onerror="this.src='Assets/mapped_view.jpeg'">
+                            <div class="map-overlay">
+                                <span class="map-icon">📍</span>
+                                <p class="map-click-text">Click to open in Maps</p>
+                            </div>
                         </div>
-                        <p class="scan-text">স্ক্যান করুন<br><span class="english-text">Scan QR Code</span></p>
+                        <p class="location-text">বধূবরণ · Reception<br><span class="english-text">Nazrul Smriti Pathagar, Santoshpur Gout Colony, Maheshtala - 700142</span></p>
+                        <p class="location-hint">ঠিকানার জন্য এখানে ক্লিক করুন<br><span class="english-text">Click here for Location</span></p>
                     </div>
                 </div>
-                <p class="location-text">ঠিকানার জন্য এখানে ক্লিক করুন<br><span class="english-text">Click here for Location</span></p>
             </section>
 
             <!-- RSVP Section -->
             <div class="sec">
-                <div class="sh"><span class="sh-ico">✉️</span><span class="sh-title">RSVP</span><div class="sh-line"></div></div>
+                <div class="sh"><img src="Assets/mail_logo.png" alt="" class="sh-ico-img"><span class="sh-title">RSVP</span><div class="sh-line"></div></div>
                 <div class="rsvpinner">
                     <div class="rtitle">আপনার উত্তর দিন</div>
                     <p class="rsub">আমাদের বিশেষ দিনে আপনার উপস্থিতি নিশ্চিত করুন।<br>Kindly confirm your attendance.</p>
@@ -303,7 +343,7 @@
             <!-- BLESSINGS -->
             <div class="sec">
                 <div class="sh">
-                    <span class="sh-ico">🙏</span>
+                    <img src="Assets/blessin_logo.png" alt="" class="sh-ico-img sh-ico-img--blessings">
                     <span class="sh-title">Blessings</span>
                     <div class="sh-line"></div>
                     <button class="clear-blessings-btn" id="clear-blessings-btn" onclick="clearBlessings()" style="display: none;">
@@ -312,47 +352,13 @@
                     </button>
                 </div>
                 <div class="sb" id="wishes-wall">
-                    <div class="wish-empty">আশীর্বাদ এখানে দেখা যাবে<br><span style="font-size:11px">Blessings will appear here</span></div>
-                </div>
-            </div>
-
-            <!-- Contribution Section -->
-            <div class="sec contribution-section">
-                <div class="sh">
-                    <span class="sh-ico">💝</span>
-                    <span class="sh-title">Contribution</span>
-                    <div class="sh-line"></div>
-                </div>
-                <div class="contribution-content">
-                    <p class="contribution-subtitle">আপনার শুভেচ্ছা আমাদের জন্য মূল্যবান<br><span class="english-text">Your blessings are precious to us</span></p>
-                    
-                    <div class="payment-wrapper">
-                        <!-- PhonePe QR Code -->
-                        <div class="payment-qr-container">
-                            <div class="payment-qr-box">
-                                <img src="Assets/Phone_pay_qr.jpeg" alt="PhonePe QR Code" class="payment-qr-image">
-                            </div>
-                            <p class="payment-qr-text">QR কোড স্ক্যান করুন<br><span class="english-text">Scan QR Code</span></p>
-                        </div>
-                        
-                        <!-- UPI ID -->
-                        <div class="upi-container">
-                            <p class="upi-label">UPI ID</p>
-                            <div class="upi-id-box" onclick="copyUPI()">
-                                <span class="upi-id-text" id="upi-id">7003167407-2@ibl</span>
-                                <span class="copy-icon" id="copy-icon">📋</span>
-                            </div>
-                            <p class="upi-hint">ট্যাপ করে কপি করুন<br><span class="english-text">Tap to copy</span></p>
-                        </div>
-                    </div>
-                    
-                    <p class="contribution-note">আপনার ভালোবাসা এবং শুভেচ্ছা আমাদের সবচেয়ে বড় উপহার<br><span class="english-text">Your love and blessings are our greatest gift</span></p>
+                    <div class="wish-empty">আশীর্বাদ এখানে দেখা যাবে<br><span class="wish-empty-en">Blessings will appear here</span></div>
                 </div>
             </div>
 
             <!-- Footer -->
             <div class="footer">
-                <span class="footer-om">🕉️</span>
+                <img src="Assets/om_logo.png" alt="" class="footer-om-img">
                 <div class="footer-names">Priti & Prithis</div>
                 <div class="footer-date">১৩ মে · May 13, 2026</div>
                 <div class="footer-div"></div>

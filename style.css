@@ -110,9 +110,11 @@ body::before {
 .landing-main-box {
     position: relative;
     width: 90%;
+    /* width: 93%; */
     max-width: 420px;
     background: linear-gradient(180deg, #FFFFFF 0%, #FFFEF8 100%);
     padding: 25px 30px;
+    /* padding: 34px 30px; */
     /* margin-bottom: 35px; */
     box-shadow: 0 10px 40px rgba(218, 165, 32, 0.15), 0 0 0 1px rgba(218, 165, 32, 0.1);
     border: 3px solid #DAA520;
@@ -348,7 +350,8 @@ body::before {
     background: linear-gradient(180deg, #DAA520 0%, #B8860B 100%);
     color: #FFFFFF;
     border: none;
-    padding: 18px 50px;
+    /* padding: 18px 50px; */
+    padding: 8px 50px;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 1px;
@@ -563,6 +566,22 @@ body::before {
     color: #FFFFFF;
     font-weight: 700;
     box-shadow: 0 0 10px rgba(255, 99, 71, 0.5);
+}
+
+/* Secondary / upcoming event - faded yellow-orange (used for May 15 before May 14) */
+.calendar-day.reception-day {
+    background: rgba(255, 218, 185, 0.9);
+    color: #654321;
+    font-weight: 600;
+    box-shadow: 0 0 6px rgba(218, 165, 32, 0.3);
+}
+
+/* Past event - faded style (May 13 after May 14) */
+.calendar-day.past-event-day {
+    background: rgba(255, 218, 185, 0.9);
+    color: #654321;
+    font-weight: 600;
+    box-shadow: 0 0 6px rgba(218, 165, 32, 0.3);
 }
 
 .calendar-day:hover:not(.empty):not(.other-month) {
@@ -859,6 +878,34 @@ body::before {
     line-height: 1.6;
 }
 
+/* Reception Section */
+.reception-section-header {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 2px dashed rgba(218, 165, 32, 0.4);
+    text-align: center;
+}
+
+.reception-title {
+    color: #8B4513;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.reception-details {
+    margin-top: 15px;
+    border-left: none;
+    border-right: 4px solid #DAA520;
+    box-shadow: 2px 0 8px rgba(218, 165, 32, 0.2);
+}
+
+.reception-host-info {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px dashed rgba(218, 165, 32, 0.4);
+}
+
 /* Our Moments Section */
 .moments-section {
     margin-top: 25px;
@@ -1010,7 +1057,7 @@ body::before {
     display: none;
 }
 
-/* QR Code Section */
+/* Map Section - Venue Locations */
 .qr-section {
     margin-top: 25px;
     text-align: center;
@@ -1020,12 +1067,16 @@ body::before {
 .map-qr-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
     align-items: center;
     margin-bottom: 15px;
 }
 
-/* Map Image Container */
+.map-block {
+    width: 100%;
+    max-width: 100%;
+}
+
 .map-image-container {
     position: relative;
     width: 100%;
@@ -1085,98 +1136,34 @@ body::before {
     margin: 0;
 }
 
-/* QR Code Container */
-.qr-container {
-    display: inline-block;
-    padding: 15px;
-    background: rgba(255, 250, 240, 0.8);
-    border-radius: 12px;
-    border: 2px solid rgba(218, 165, 32, 0.4);
-    transition: all 0.3s ease;
-    width: 100%;
-    max-width: 200px;
-}
-
-.qr-container:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
-}
-
-.qr-container:active {
-    transform: scale(0.98);
-}
-
-.qr-placeholder {
-    width: 130px;
-    height: 130px;
-    background: #FFFFFF;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto 12px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-    border: 2px solid #F5DEB3;
-}
-
-.qr-icon {
-    font-size: 35px;
-    margin-bottom: 8px;
-}
-
-.qr-text {
-    color: #8B4513;
-    font-size: 11px;
-    font-weight: 600;
-}
-
-.scan-text {
-    color: #8B4513;
-    font-size: 12px;
-    font-weight: 500;
-    margin-top: 8px;
-    line-height: 1.5;
-}
-
 .location-text {
     color: #8B4513;
     font-size: 13px;
     font-weight: 500;
     margin-top: 10px;
     line-height: 1.6;
+}
+
+.location-hint {
+    color: #8B4513;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 5px;
+    line-height: 1.5;
     font-style: italic;
 }
 
-/* QR Code Canvas */
-#map-qr-code canvas {
-    width: 100% !important;
-    height: 100% !important;
-}
-
-#map-qr-code {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Responsive adjustments for map section */
 @media (min-width: 600px) {
     .map-qr-wrapper {
         flex-direction: row;
+        flex-wrap: wrap;
         justify-content: center;
-        align-items: flex-start;
-        gap: 25px;
+        gap: 30px;
     }
     
-    .map-image-container {
-        flex: 1;
-        max-width: 60%;
-    }
-    
-    .qr-container {
-        flex: 0 0 auto;
-        max-width: 200px;
+    .map-block {
+        flex: 1 1 280px;
+        max-width: 45%;
     }
 }
 
@@ -1192,13 +1179,26 @@ body::before {
 .sh {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
+    /* gap: 10px; */
+    margin-bottom: 7px;
     position: relative;
 }
 
 .sh-ico {
     font-size: 24px;
+}
+
+.sh-ico-img {
+    width: 32px;
+    height: 22px;
+    object-fit: contain;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.sh-ico-img--blessings {
+    width: 28px;
+    height: 24px;
 }
 
 .sh-title {
@@ -1346,7 +1346,7 @@ body::before {
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(218, 165, 32, 0.4);
     transition: all 0.3s ease;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 
 .rbtn:active {
@@ -1358,18 +1358,24 @@ body::before {
 .sb {
     min-height: 150px;
     padding: 20px;
-    background: rgba(255, 250, 240, 0.4);
+    background: rgba(255, 250, 240, 0.7);
     border-radius: 10px;
-    border: 2px dashed rgba(218, 165, 32, 0.3);
+    border: 2px dashed rgba(139, 69, 19, 0.5);
 }
 
 .wish-empty {
     text-align: center;
-    color: #8B4513;
-    font-size: 14px;
-    opacity: 0.6;
+    color: #654321;
+    font-size: 15px;
+    font-weight: 500;
     padding: 20px;
     line-height: 1.8;
+}
+
+.wish-empty-en {
+    font-size: 13px;
+    display: block;
+    margin-top: 4px;
 }
 
 .wish-item {
@@ -1395,182 +1401,11 @@ body::before {
     margin-top: 5px;
 }
 
-/* Contribution Section */
-.contribution-section {
-    background: linear-gradient(180deg, rgba(255, 250, 240, 0.8) 0%, rgba(255, 248, 235, 0.9) 100%);
-}
-
-.contribution-content {
-    padding: 15px 0;
-}
-
-.contribution-subtitle {
-    text-align: center;
-    font-size: 13px;
-    color: #8B4513;
-    margin-bottom: 20px;
-    font-weight: 500;
-    line-height: 1.6;
-    font-style: italic;
-}
-
-.payment-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-/* PhonePe QR Code Container */
-.payment-qr-container {
-    text-align: center;
-}
-
-.payment-qr-box {
-    width: 200px;
-    height: 200px;
-    background: #FFFFFF;
-    border-radius: 12px;
-    padding: 12px;
-    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.15);
-    border: 2px solid #DAA520;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 10px;
-    transition: all 0.3s ease;
-}
-
-.payment-qr-box:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(139, 69, 19, 0.2);
-}
-
-.payment-qr-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 8px;
-}
-
-.payment-qr-text {
-    color: #8B4513;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.5;
-}
-
-/* UPI ID Container */
-.upi-container {
-    text-align: center;
-    width: 100%;
-    max-width: 300px;
-}
-
-.upi-label {
-    color: #8B4513;
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    letter-spacing: 0.5px;
-}
-
-.upi-id-box {
-    background: #FFFFFF;
-    border: 2px solid #DAA520;
-    border-radius: 10px;
-    padding: 12px 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(218, 165, 32, 0.2);
-    margin-bottom: 8px;
-}
-
-.upi-id-box:hover {
-    background: rgba(255, 250, 240, 0.9);
-    border-color: #B8860B;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(218, 165, 32, 0.3);
-}
-
-.upi-id-box:active {
-    transform: translateY(0);
-}
-
-.upi-id-text {
-    flex: 1;
-    color: #654321;
-    font-size: 14px;
-    font-weight: 600;
-    font-family: 'Courier New', monospace;
-    letter-spacing: 0.5px;
-    word-break: break-all;
-    text-align: left;
-}
-
-.copy-icon {
-    font-size: 18px;
-    flex-shrink: 0;
-    transition: transform 0.3s ease;
-}
-
-.upi-id-box:hover .copy-icon {
-    transform: scale(1.1);
-}
-
-.upi-id-box.copied .copy-icon::after {
-    content: '✓';
-    color: #28a745;
-}
-
-.upi-hint {
-    color: #8B4513;
-    font-size: 11px;
-    opacity: 0.7;
-    font-style: italic;
-    line-height: 1.5;
-}
-
-.contribution-note {
-    text-align: center;
-    font-size: 12px;
-    color: #654321;
-    font-style: italic;
-    line-height: 1.7;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px dashed rgba(218, 165, 32, 0.3);
-}
-
-/* Responsive adjustments for contribution section */
-@media (min-width: 600px) {
-    .payment-wrapper {
-        flex-direction: row;
-        justify-content: center;
-        align-items: flex-start;
-        gap: 30px;
-    }
-    
-    .payment-qr-container {
-        flex: 0 0 auto;
-    }
-    
-    .upi-container {
-        flex: 0 0 auto;
-        max-width: 280px;
-    }
-}
-
 /* Footer */
 .footer {
     text-align: center;
     padding: 25px 15px;
-    margin-top: 30px;
+    margin-top: 21px;
     background: rgba(255, 250, 240, 0.8);
     border-radius: 15px;
     border: 2px solid #DAA520;
@@ -1580,6 +1415,14 @@ body::before {
     font-size: 30px;
     display: block;
     margin-bottom: 10px;
+}
+
+.footer-om-img {
+    width: 80px;
+    height: 36px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 10px;
 }
 
 .footer-names {
@@ -1614,9 +1457,9 @@ body::before {
 /* Digital Invitation Footer */
 .digital-footer {
     text-align: center;
-    padding: 20px 15px;
+    padding: 12px 15px;
     margin-top: 20px;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
     background: rgba(255, 250, 240, 0.6);
     border-radius: 12px;
     border-top: 1px solid rgba(218, 165, 32, 0.3);
@@ -1669,7 +1512,40 @@ body::before {
     border-color: #DAA520;
     color: #DAA520;
     transform: translateY(-2px) scale(1.1);
-    box-shadow: 0 4px 8px rgba(218, 165, 32, 0.3);
+}
+
+/* Pan Pata Section */
+.pan-pata-section {
+    text-align: center;
+    /* padding: 25px 15px 30px; */
+    /* padding: 10px 15px 30px; */
+    padding: 10px 10px 1px;
+    margin-top: 10px;
+}
+
+.pan-pata-text {
+    color: #654321;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.8;
+    margin: 0 0 8px;
+    font-style: italic;
+}
+
+.pan-pata-text-eng {
+    color: #8B4513;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.6;
+    /* margin: 0 0 20px; */
+    font-style: italic;
+}
+
+.pan-pata-img {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 .social-icon:active {

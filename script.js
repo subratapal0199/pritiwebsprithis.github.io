@@ -15,7 +15,6 @@ function openInvitation() {
     // Start countdown when page opens
     startCountdown();
     generateCalendar();
-    generateMapQRCode();
     loadBlessings();
     
     // Play background music
@@ -51,10 +50,15 @@ function goBack() {
     window.scrollTo(0, 0);
 }
 
-// Open map location
-function openMapLocation() {
-    const mapUrl = 'https://www.google.com/maps/place/Nazrul+Mancha/@22.5133504,88.3441575,15z/data=!3m1!4b1!4m6!3m5!1s0x3a027715fa70c4c5:0x9defaebf49454c3d!8m2!3d22.5133316!4d88.3626116!16s%2Fm%2F0gmd99l?entry=ttu&g_ep=EgoyMDI2MDIyMy4wIKXMDSoASAFQAw%3D%3D';
-    window.open(mapUrl, '_blank');
+// Map URLs for Wedding & Reception
+const MAP_URLS = {
+    wedding: 'https://www.google.com/maps/place/G78J%2B3GH+Indian+saloon.+Rampur+Quarter,+Rampur,+Santoshpur,+Maheshtala,+West+Bengal+700141/data=!4m2!3m1!1s0x3a027bd5f42c00b9:0x2b5e6b9741f5f0e5',
+    reception: 'https://www.google.com/maps/place/Najrul+pathagar/@22.5145547,88.2711504,15.82z/data=!4m6!3m5!1s0x3a027ba042d29c3b:0x79d06acec4b010a0!8m2!3d22.5151921!4d88.2717984'
+};
+
+function openMapLocation(venue) {
+    const url = MAP_URLS[venue] || MAP_URLS.reception;
+    window.open(url, '_blank');
 }
 
 // Countdown timer
@@ -105,10 +109,14 @@ function generateCalendar() {
     const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const weddingDay = 13;
+    const receptionDay = 15;
     const today = new Date();
     const todayDate = today.getDate();
     const todayMonth = today.getMonth();
     const todayYear = today.getFullYear();
+
+    // After May 13 is over (on or after May 14), reception (15) becomes primary, wedding (13) becomes past
+    const isAfterWedding = (todayYear > year) || (todayYear === year && todayMonth > month) || (todayYear === year && todayMonth === month && todayDate >= 14);
 
     // Add empty cells for days before the first day of the month
     for (let i = 0; i < firstDay; i++) {
@@ -123,9 +131,13 @@ function generateCalendar() {
         dayElement.className = 'calendar-day';
         dayElement.textContent = day;
 
-        // Check if it's the wedding day
+        // Wedding day (13): primary before May 14, past/faded on or after May 14
         if (day === weddingDay) {
-            dayElement.classList.add('wedding-day');
+            dayElement.classList.add(isAfterWedding ? 'past-event-day' : 'wedding-day');
+        }
+        // Reception day (15): faded before May 14, primary on or after May 14
+        else if (day === receptionDay) {
+            dayElement.classList.add(isAfterWedding ? 'wedding-day' : 'reception-day');
         }
         // Check if it's today
         else if (day === todayDate && month === todayMonth && year === todayYear) {
@@ -219,7 +231,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (invitationPage && invitationPage.classList.contains('active')) {
         startCountdown();
         generateCalendar();
-        generateMapQRCode();
         loadBlessings();
     }
     
@@ -252,39 +263,6 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 });
-
-// Generate QR Code for Map Location
-function generateMapQRCode() {
-    const qrContainer = document.getElementById('map-qr-code');
-    if (!qrContainer) return;
-    
-    // Clear existing content
-    qrContainer.innerHTML = '';
-    
-    // Google Maps URL
-    const mapUrl = 'https://www.google.com/maps/place/Nazrul+Mancha/@22.5133504,88.3441575,15z/data=!3m1!4b1!4m6!3m5!1s0x3a027715fa70c4c5:0x9defaebf49454c3d!8m2!3d22.5133316!4d88.3626116!16s%2Fm%2F0gmd99l?entry=ttu&g_ep=EgoyMDI2MDIyMy4wIKXMDSoASAFQAw%3D%3D';
-    
-    // Generate QR code using QRCode library
-    if (typeof QRCode !== 'undefined') {
-        try {
-            new QRCode(qrContainer, {
-                text: mapUrl,
-                width: 130,
-                height: 130,
-                colorDark: '#8B4513',
-                colorLight: '#FFFFFF',
-                correctLevel: QRCode.CorrectLevel.H
-            });
-        } catch (error) {
-            console.error('QR Code generation error:', error);
-            // Fallback to placeholder
-            qrContainer.innerHTML = '<div class="qr-icon">📍</div><p class="qr-text">QR Code</p>';
-        }
-    } else {
-        // Retry if library not loaded yet
-        setTimeout(generateMapQRCode, 500);
-    }
-}
 
 // RSVP Functionality
 function sendRSVP() {
@@ -360,7 +338,7 @@ function displayBlessings() {
     }
     
     if (blessings.length === 0) {
-        wishesWall.innerHTML = '<div class="wish-empty">আশীর্বাদ এখানে দেখা যাবে<br><span style="font-size:11px">Blessings will appear here</span></div>';
+        wishesWall.innerHTML = '<div class="wish-empty">আশীর্বাদ এখানে দেখা যাবে<br><span class="wish-empty-en">Blessings will appear here</span></div>';
         return;
     }
     
@@ -387,61 +365,4 @@ function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
-}
-
-// Copy UPI ID to clipboard
-function copyUPI() {
-    const upiId = '7003167407-2@ibl';
-    const upiBox = document.querySelector('.upi-id-box');
-    const copyIcon = document.getElementById('copy-icon');
-    
-    // Try to copy to clipboard
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(upiId).then(() => {
-            // Show success feedback
-            if (upiBox) {
-                upiBox.classList.add('copied');
-                if (copyIcon) {
-                    copyIcon.textContent = '✓';
-                    copyIcon.style.color = '#28a745';
-                }
-                
-                // Reset after 2 seconds
-                setTimeout(() => {
-                    upiBox.classList.remove('copied');
-                    if (copyIcon) {
-                        copyIcon.textContent = '📋';
-                        copyIcon.style.color = '';
-                    }
-                }, 2000);
-            }
-            
-            // Show alert message
-            alert('UPI ID copied! / UPI ID কপি করা হয়েছে!\n\n' + upiId);
-        }).catch(err => {
-            console.error('Failed to copy:', err);
-            fallbackCopy(upiId);
-        });
-    } else {
-        // Fallback for older browsers
-        fallbackCopy(upiId);
-    }
-}
-
-function fallbackCopy(text) {
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    textArea.style.position = 'fixed';
-    textArea.style.opacity = '0';
-    document.body.appendChild(textArea);
-    textArea.select();
-    
-    try {
-        document.execCommand('copy');
-        alert('UPI ID copied! / UPI ID কপি করা হয়েছে!\n\n' + text);
-    } catch (err) {
-        alert('Please copy manually: / অনুগ্রহ করে ম্যানুয়ালি কপি করুন:\n\n' + text);
-    }
-    
-    document.body.removeChild(textArea);
 }

@@ -266,16 +266,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // RSVP Functionality
 function sendRSVP() {
-    const name = document.getElementById('r-name').value.trim();
-    const guests = document.getElementById('r-guests').value;
-    const attend = document.getElementById('r-attend').value;
-    const wish = document.getElementById('r-wish').value.trim();
-    
+    const nameEl = document.getElementById('r-name');
+    const guestsEl = document.getElementById('r-guests');
+    const attendEl = document.getElementById('r-attend');
+    const wishEl = document.getElementById('r-wish');
+
+    const name = nameEl ? nameEl.value.trim() : '';
+    const guests = guestsEl ? guestsEl.value : '';
+    const attend = attendEl ? attendEl.value : '';
+    const wish = wishEl ? wishEl.value.trim() : '';
+
     if (!name) {
         alert('Please enter your name / অনুগ্রহ করে আপনার নাম লিখুন');
         return;
     }
-    
+
     // Create RSVP data object
     const rsvpData = {
         name: name,
@@ -284,23 +289,23 @@ function sendRSVP() {
         wish: wish,
         timestamp: new Date().toISOString()
     };
-    
+
     // Store in localStorage (in a real app, you'd send this to a server)
     let rsvps = JSON.parse(localStorage.getItem('weddingRSVPs') || '[]');
     rsvps.push(rsvpData);
     localStorage.setItem('weddingRSVPs', JSON.stringify(rsvps));
-    
+
     // Add blessing if provided
     if (wish) {
         addBlessing(name, wish);
     }
-    
+
     // Clear form
-    document.getElementById('r-name').value = '';
-    document.getElementById('r-guests').selectedIndex = 0;
-    document.getElementById('r-attend').selectedIndex = 0;
-    document.getElementById('r-wish').value = '';
-    
+    if (nameEl) nameEl.value = '';
+    if (guestsEl) guestsEl.selectedIndex = 0;
+    if (attendEl) attendEl.selectedIndex = 0;
+    if (wishEl) wishEl.value = '';
+
     // Show success message
     alert('Thank you for your RSVP! / আপনার উত্তর দেওয়ার জন্য ধন্যবাদ!');
 }

@@ -1474,6 +1474,17 @@ body::before {
     opacity: 0.85;
 }
 
+.signature-wrap {
+    text-align: center;
+    /* margin-top: 8px; */
+}
+
+.signature-img {
+    height: 24px;
+    width: auto;
+    display: inline-block;
+}
+
 .copyright-text {
     font-size: 10px;
     color: #654321;
@@ -1488,8 +1499,8 @@ body::before {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
-    margin: 12px 0;
+    gap: 14px;
+    margin: 11px 0;
 }
 
 .social-icon {

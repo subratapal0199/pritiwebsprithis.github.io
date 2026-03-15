@@ -53,7 +53,7 @@ function goBack() {
 // Map URLs for Wedding & Reception
 const MAP_URLS = {
     wedding: 'https://www.google.com/maps/place/G78J%2B3GH+Indian+saloon.+Rampur+Quarter,+Rampur,+Santoshpur,+Maheshtala,+West+Bengal+700141/data=!4m2!3m1!1s0x3a027bd5f42c00b9:0x2b5e6b9741f5f0e5',
-    reception: 'https://www.google.com/maps/place/Najrul+pathagar/@22.5145547,88.2711504,15.82z/data=!4m6!3m5!1s0x3a027ba042d29c3b:0x79d06acec4b010a0!8m2!3d22.5151921!4d88.2717984'
+    reception: 'https://www.google.com/maps/place/Najrul+pathagar/@22.5151921,88.2717984,17z/data=!3m1!4b1!4m6!3m5!1s0x3a027ba042d29c3b:0x79d06acec4b010a0!8m2!3d22.5151921!4d88.2717984!16s%2Fg%2F11r62fzrz_!17m2!4m1!1e3!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDMxMS4wIKXMDSoASAFQAw%3D%3D'
 };
 
 function openMapLocation(venue) {
